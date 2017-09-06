@@ -23,7 +23,8 @@ services:
             - server
         depends_on:
             - mysql
-
+    # the "mysql" tag is what docker provides as a "host" name to the web directory
+    # the actual host is at 127.0.0.1, which needs to be provided here.
     mysql:
         image: mysql:latest
         volumes:
@@ -31,10 +32,11 @@ services:
         networks:
             - database
         environment:
-            MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
-            MYSQL_DATABASE: "${DB_NAME}"
-            MYSQL_USER: "${DB_USERNAME}"
-            MYSQL_PASSWORD: "${DB_PASSWORD}"
+            MYSQL_ROOT_PASSWORD: "halibut"
+            MYSQL_DATABASE: "ubersmith"
+            MYSQL_USER: "ciscoserret"
+            MYSQL_PASSWORD: "halibut"
+            MYSQL_HOST: "127.0.0.1"
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
